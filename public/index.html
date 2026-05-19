@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EPUB to PDF Converter</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="EPUB to PDF Converter home">
+        <img src="/images/4e8a690b-fab5-4d75-b9e1-7499b8cc68f9.png" alt="" />
+      </a>
+    </header>
+
+    <main class="shell">
+      <section class="converter" aria-labelledby="converter-title">
+        <div class="intro">
+          <p class="eyebrow">Publishing utility</p>
+          <h1 id="converter-title">Convert EPUB files into clean PDFs.</h1>
+          <p>
+            Upload an EPUB, choose a page size, and download a readable PDF. Files stay in your browser.
+          </p>
+        </div>
+
+        <div class="tool-grid">
+          <form class="panel" id="converterForm">
+            <label class="drop-zone" id="dropZone">
+              <input id="fileInput" type="file" accept=".epub,application/epub+zip" />
+              <span class="drop-icon" aria-hidden="true">PDF</span>
+              <strong id="dropTitle">Choose an EPUB file</strong>
+              <span id="dropHint">or drag and drop it here</span>
+            </label>
+
+            <div class="settings">
+              <label>
+                <span>Page size</span>
+                <select id="pageSize">
+                  <option value="a4">A4</option>
+                  <option value="letter">Letter</option>
+                </select>
+              </label>
+              <label>
+                <span>Font size</span>
+                <select id="fontSize">
+                  <option value="10">Compact</option>
+                  <option value="12" selected>Standard</option>
+                  <option value="14">Large</option>
+                </select>
+              </label>
+              <label>
+                <span>Margins</span>
+                <select id="marginSize">
+                  <option value="36">Narrow</option>
+                  <option value="48" selected>Standard</option>
+                  <option value="64">Wide</option>
+                </select>
+              </label>
+            </div>
+
+            <button id="convertButton" type="submit" disabled>Convert to PDF</button>
+          </form>
+
+          <aside class="status-panel" aria-live="polite">
+            <div>
+              <h2>Status</h2>
+              <p id="statusText">Select an EPUB to begin.</p>
+            </div>
+            <div class="progress" aria-hidden="true">
+              <span id="progressBar"></span>
+            </div>
+            <dl id="fileMeta" class="file-meta">
+              <div>
+                <dt>File</dt>
+                <dd id="fileName">None selected</dd>
+              </div>
+              <div>
+                <dt>Title</dt>
+                <dd id="bookTitle">Waiting</dd>
+              </div>
+              <div>
+                <dt>Chapters</dt>
+                <dd id="chapterCount">0</dd>
+              </div>
+            </dl>
+            <a id="downloadLink" class="download-link" hidden>Download PDF</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
